@@ -27,6 +27,44 @@ class UI{
 
     this.posts.innerHTML = output;
   }
+
+  showAlert(msg, className){
+    this.clearAlert();
+
+    // Create a div
+    const div = document.createElement('div');
+
+    // add classes
+    div.className = className;
+
+    // add text
+    div.appendChild(document.createTextNode(msg));
+
+    // insert to dom
+    const container = document.querySelector('.post-container');
+    const posts = document.querySelector('#posts');
+
+    container.insertBefore(div, posts);
+
+    // Clear after 3 secs
+    setTimeout(() => {
+      this.clearAlert();
+    }, 3000);
+  }
+
+  clearAlert(){
+    const currentAlert = document.querySelector('.alert');
+
+    if(currentAlert){
+      currentAlert.remove();
+    }
+  }
+
+  clearFields(){
+    this.titleInput.value = '';
+    this.bodyInput.value = '';
+  }
+
 }
 
 export const ui = new UI();
